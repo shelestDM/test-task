@@ -1,0 +1,60 @@
+
+<div *ngIf="key; else another" class="wrap" >
+    <div class="input-wrap" >
+        <div class="first-inp">
+            <input 
+            type="number" 
+            placeholder="Enter the currency" 
+            [(ngModel)]="firstCurrency" 
+            (input)="onAddGeneral(firstCurrency, selectedOptionOne, selectedOptionTwo)"
+            class="inp-one"
+            [ngClass]="{
+                red: !minValueKey,
+                green: minValueKey
+            }">
+            <select 
+            [(ngModel)]="selectedOptionOne" 
+            (change)="onAddGeneral(firstCurrency, selectedOptionOne, selectedOptionTwo)" 
+            class="sel-one">
+                <option *ngFor="let item of options" [value]="item.id" > {{item.name}} </option>
+            </select>
+        </div>
+        
+        <div class="second-inp">
+            <input 
+            type="number" 
+            placeholder="Enter the currency" 
+            [(ngModel)]="secondCurrency" 
+            (input)="onAddGeneral(secondCurrency, selectedOptionOne, selectedOptionTwo)" 
+            class="inp-two"
+            [ngClass]="{
+                red: !minValueKey,
+                green: minValueKey
+            }">
+            <select 
+            [(ngModel)]="selectedOptionTwo" 
+            (change)="onAddGeneral(secondCurrency, selectedOptionOne, selectedOptionTwo)"
+            class="sel-two"
+            >
+                <option *ngFor="let item of options" [value]="item.id"> {{item.name}} </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div *ngIf="minValueKey; else minValue"></div>
+
+<ng-template #another>
+    <div class="loading">
+       <h3>
+            Loading the converter interface...
+       </h3>
+    </div>
+</ng-template>
+
+<ng-template #minValue>
+    <div class="min-value">
+        <p>
+            Value of currency cant be negative or zero :( 
+        </p>
+    </div>
+</ng-template>

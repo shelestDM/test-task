@@ -1,0 +1,18 @@
+<div *ngIf="key; else another">
+    <div class="currency">
+        <h1>
+           USD {{  request.currencysValues['USD']  | number:'2.3'  }}
+        </h1>
+           <h1>
+               EUR: {{ request.currencysValues['EUR'] | number:'2.3'  }}
+           </h1>
+       </div>
+</div>
+
+<ng-template #another>
+    <div class="loading">
+       <h3>
+         Please, wait, the data of currency is loading...
+       </h3>
+    </div>
+</ng-template>
